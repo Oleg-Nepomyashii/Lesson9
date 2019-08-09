@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+
+		<script>
+					
+			// task 1
+
+			var arr = '4324,5,6456,4,432,3657,46,56,5656,6566,6567,7,'
+
+			var getNumbersArray = function fromStr(someStr) {
+
+				var newArr = [];
+
+				var a = '';
+
+				for (var i = 0 ;  i < someStr.length ; i++) {
+
+					if(someStr[i] !== ','){
+
+						a += someStr[i]
+
+						if(i === someStr.length - 1 ){
+							newArr.push(+a);
+						}
+
+					} else {
+
+						newArr.push(+a);
+
+						a = '';
+				
+					}
+
+				}
+
+				return  newArr;
+
+			}
+
+
+			console.log(getNumbersArray(arr));
+
+
+
+			// 2 task
+
+			var notification = [
+
+				 {
+				  title: '31/07/2019',
+				  msg: 'Some message 31.07 1 here',
+				 },
+				 {
+				  title: '22/02/2019',
+				  msg: 'Some message 22.02 1 here',
+				 },
+				 {
+				  title: '27/05/2019',
+				  msg: 'Some message 27.05 1 here',
+				 },
+				 {
+				  title: '25/06/2019',
+				  msg: 'Some message 25.06 1 here',
+				 },
+				  {
+				  title: '27/05/2019',
+				  msg: 'Some message 27.05 2 here',
+				 },
+				 {
+				  title: '31/07/2019',
+				  msg: 'Some message 31.07 2 here',
+				 },
+				  {
+				  title: '22/02/2019',
+				  msg: 'Some message 22.02 2 here',
+				 },
+				 {
+				  title: '25/06/2019',
+				  msg: 'Some message 25.06 2 here',
+				 }
+			];
+
+
+			function group(arr) {
+
+				arr.sort(function(next , prev){
+
+					if(next.title>prev.title) return -1;
+					if (next.title===prev.title) return 0;
+					if(next.title<prev.title) return 1 ;
+	
+				});
+	
+				return	arr.reduce(function(res , item){
+
+					if(!res.length || res[res.length - 1].title !== item.title) {
+						var a = [];
+						a.push(item.msg);
+
+						res.push({
+							title: item.title,
+							items: a
+						})
+
+					} else {
+						res[res.length - 1].items.push(item.msg)
+					}
+
+					return res;
+
+				}, []);
+
+		
+			};
+
+			
+			console.log(group(notification));
+
+
+		</script>
+		
+	</body>
+</html>
